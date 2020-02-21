@@ -26,6 +26,9 @@ def yak_parse(url_yak):
         if item_yak.get("class") :
             return(item_yak.getText())
 
+#def osc_parse(url_osc):
+
+
 
 # Test longueur de la plaque 3min(1A1) 10max(9999ZZZ999)
 plaque_raw = input("Plaque: ")
