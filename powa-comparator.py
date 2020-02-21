@@ -1,10 +1,17 @@
-
+import time
 import urllib.request
-#import re
 import urllib
 import bs4
 from urllib import request
+from os import system
 
+
+def plaque_format(plaque_raw):
+    plaque = ''
+    # Remove spaces and '-'
+    plaque_raw = plaque_raw.replace(' ', '')
+    plaque = plaque_raw.replace('-', '')
+    return(plaque)
 
 def yak_parse(url_yak):
     # Define the url then specify a specific User-Agent for the read() request
@@ -20,29 +27,30 @@ def yak_parse(url_yak):
             return(item_yak.getText())
 
 
-# User entry
-plaque_tmp = input("Plaque: ")
-
-# Remove spaces then '-'
-plaque_tmp = plaque_tmp.replace(' ', '')
-plaque = plaque_tmp.replace('-','')
-
-print(plaque)
-
 # Test longueur de la plaque 3min(1A1) 10max(9999ZZZ999)
-if len(plaque) <= 3:
+plaque_raw = input("Plaque: ")
+while len(plaque_raw) <=3:
     print("La plaque est trop courte.")
-if len(plaque) >= 11:
+    time.sleep(1)
+    system('clear')
+    plaque_raw = input("\nPlaque: ")
+
+while len(plaque_raw) >= 11:
     print("La plaque est trop longue.")
+    time.sleep(1)
+    system('clear')
+    plaque_raw = input("\nPlaque: ")
+
+print(plaque_format(plaque_raw))
 
 # YAKAROULER
-print(yak_parse("https://www.yakarouler.com/car_search/immat?immat=" + plaque + "&name=undefined&redirect=true"))
+print("YAKAROULER: " + yak_parse("https://www.yakarouler.com/car_search/immat?immat=" + plaque_format(plaque_raw) + "&name=undefined&redirect=true"))
 
 # PIECESAUTO.COM
 
 # OSCARO.COM
 url_string_osc = 'https://www.oscaro.com/Catalog/SearchEngine/GetPlateSearchResult'
-data = "plateValue=" + plaque + "&genartId=null"
+data = "plateValue=" + plaque_format(plaque_raw) + "&genartId=null"
 data = data.encode('utf-8')
 req_osc = urllib.request.Request(url=url_string_osc, data=data, method='POST', headers={'User-Agent': 'Mozilla/5.0'})
 response_osc = urllib.request.urlopen(req_osc).read()
