@@ -1,0 +1,1 @@
+#POWA Comparator
