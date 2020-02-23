@@ -1,10 +1,20 @@
+#!/usr/bin/env python
+# author: Julien ESCOFFIER
+# email: julien.escoffier@protonmail.com
+#
+# Todo: 
+# - add installation instructions(README.md)
+# - add an addition license plate website (for informations crossing & verification)
+# - add technical stats of vehicule
+# - add comparator (with a saved license plate) (0-60) (400m) (1/4 mile) ...
+
+
 import time
 import urllib.request
 import urllib
 import bs4
 from urllib import request
 from os import system
-
 
 def plaque_format(plaque_raw):
     plaque = ''
