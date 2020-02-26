@@ -16,7 +16,7 @@ list_letter2 = list_letter1
 list_letter3 = list_letter1
 list_letter4 = list_letter1
 
-
+print(list_letter4)
 
 import time
 import urllib.request
